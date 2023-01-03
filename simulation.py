@@ -1,10 +1,21 @@
 # importation des bibliothèques et des modules indispensables
 from random import randint
 import pygame
-from pygame.locals import QUIT
+from pygame.locals import QUIT #on importe le module QUIT
 
 import class_case
 import class_tableaudejeu
+
+def niveau():
+    level = input("Choisissez votre niveau : facile, moyen ou difficile : ")
+    if level == 'facile':
+        return 10 # 10 x 10 (100 cases)
+    elif level == 'moyen':
+        return 15 # 15 x 15 (225 cases)
+    elif level == 'difficile':
+        return 20 # 20 x 20 (400 cases)
+    else:
+        niveau()
 
 if __name__ == '__main__':
     # initialisation du jeu avec 10 lignes, 15 colonnes et 25 mines
@@ -31,7 +42,7 @@ if __name__ == '__main__':
     longueur_fenetre = 800
     largeur_fenetre = 600
     screen = pygame.display.set_mode((longueur_fenetre, largeur_fenetre))
-    pygame.display.set_caption('Démineur')
+    pygame.display.set_caption('Jeu du Démineur')
 
     # Fill background
     background = pygame.Surface(screen.get_size())
@@ -40,27 +51,16 @@ if __name__ == '__main__':
 
     # Display some text
     font = pygame.font.Font(None, 36)
-    text = font.render("Démineur", 1, (10, 10, 10))
+    nb_cases_cote = niveau()
+    text = font.render("Démineur", 1, (nb_cases_cote, nb_cases_cote, nb_cases_cote))
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
     background.blit(text, textpos)
     
     # Blit everything to the screen
     screen.blit(background, (0, 0))
-    pygame.display.flip()
+    pygame.display.flip() #affiche le pygame. Toujours mettre à la fin 
     
-    # création de la fenêtre
-    
-    # fenetre.fill((250,0,0)) # couleur de la fenêtre
-    # pygame.display.set_caption("Jeu du démineur") # définition de la fenêtre
-
-    # # création de la surface du tableau de jeu
-    # width = height = 500
-    # surface_plateau = pygame.surface((width, height), flags=0, depth=0, masks=None)
-    # surface_plateau = pygame.Surface.fill((250,250,250)) # couleur de la surface
-
-    # nb_cases_cote = niveau()
-
     run = True
 
     while run:
@@ -78,28 +78,8 @@ if __name__ == '__main__':
         pygame.display.flip()
         
 
-def niveau():
-    level = input("Choisissez votre niveau : facile, moyen ou difficile : ")
-    if level == 'facile':
-        return 10 # 10 x 10 (100 cases)
-    elif level == 'moyen':
-        return 15 # 15 x 15 (225 cases)
-    elif level == 'difficile':
-        return 20 # 20 x 20 (400 cases)
-    else:
-        niveau()
-
-
-
-
-
-
-
 
 '''
-run = True
-
-nb_cases_cote = niveau()
 
 # min renvoie la valeur minimale d'une liste, ici la dimension de la fenêtre
 taille_case = min(fenetre.get_size()) // nb_cases_cote - (min(fenetre.get_size()) // nb_cases_cote // nb_cases_cote)
@@ -135,3 +115,13 @@ côté interface :
 - fond
 - couleur
 '''
+
+   # création de la fenêtre
+    
+    # fenetre.fill((250,0,0)) # couleur de la fenêtre
+    # pygame.display.set_caption("Jeu du démineur") # définition de la fenêtre
+
+    # # création de la surface du tableau de jeu
+    # width = height = 500
+    # surface_plateau = pygame.surface((width, height), flags=0, depth=0, masks=None)
+    # surface_plateau = pygame.Surface.fill((250,250,250)) # couleur de la surface
