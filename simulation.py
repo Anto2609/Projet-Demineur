@@ -69,15 +69,7 @@ if __name__ == '__main__':
         for event in events:
             if event.type == QUIT:
                 run = False
-    run = True
 
-    while run:
-
-        events = pygame.event.get()
-        for event in events:
-            if event.type == QUIT:
-                run = False
-                
         # for i in range(10):
         #     for j in range(10): # on parcourt les 2 dimensions
         #         pygame.draw.rect(10, [255]*3, [i*10, j*10, 10, 10], 1)
@@ -85,7 +77,6 @@ if __name__ == '__main__':
         screen.blit(background, (0, 0))
         pygame.display.flip()
         
-#continuer le pygame
 
 '''
 
